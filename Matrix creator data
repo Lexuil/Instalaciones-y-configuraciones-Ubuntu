@@ -1,0 +1,19 @@
+ Registering device...
+ New Device d6242982e2d3
+ Device registered successfully
+
+Save your *device id* and *device secret*
+You will not be able to see the secret for this device again
+
+Save the following to ~/.envrc on your Pi
+
+export MATRIX_DEVICE_ID=d6242982e2d3
+export MATRIX_DEVICE_SECRET=829d3d218997a255865a1de4d6316c733920f31ccfe27abd4d63f74591cdfa44970c805523c6dc7d94ddcc8f76
+
+Make these available by running `source ~/.envrc` before running MATRIX OS
+
+Set up `matrix` CLI to target this device
+
+matrix use d6242982e2d3
+or
+matrix use Matrix
