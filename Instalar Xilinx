@@ -1,0 +1,40 @@
+1. Descargamos el instalador desde: http://www.xilinx.com/support/downloa...
+NOTA: Descargamos en ISE Tools → Full Installer for Linux (TAR/GZIP - 5.88 GB)
+2. Descomprimimos el archivo tar
+tar xvf NOMBRE_ARCHIVO.tar
+o desde el entorno grafico... a su gusto
+3. Ejecutamos el instalador
+sudo ./xsetup
+4. La licencia la vamos a obtener de esta pagina: http://www.xilinx.com/getlicense
+NOTA: Con el registro anterior nos autentificamos y generamos nuestra licencia para ISE Design Suite
+nos enviarán un archivo "Xilinx.bin" a nuestro correo, le cambiamos la extensión por .lic y la usamos
+5. Para hacer que la aplicación funcione correctamente debe ejecutar lo siguiente:
+source /opt/Xilinx/14.6/ISE_DS/settings64.sh
+6. Copia de las reglas de udev y adapte el archivo a la nueva versión de udev
+sudo cp /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/xusbdfwu.rules /etc/udev/rules.d/50-xusbdfwu.rules
+sudo sed -i -e 's/TEMPNODE/tempnode/' -e 's/SYSFS/ATTRS/g' -e 's/BUS/SUBSYSTEMS/' /etc/udev/rules.d/50-xusbdfwu.rules
+
+NOTA: Si su equipo se está ejecutando 32-bits, entonces cambie en la primera linea "lin64" por "lin" en la primera línea.
+
+7. Copie los archivos hexadecimales (*.hex) utilizados paor las diversas tarjetas y cables Xilinx en /usr/share y hágalos legibles por los usuarios regulares.
+sudo cp /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/xusb*.hex /usr/share/
+sudo chmod 644 /usr/share/xusb*.hex
+
+NOTA: Cambie "lin64" por "lin" para los sistemas de 32-bits.
+8. Reinicie udev
+sudo restart udev
+9. Para hacer que la aplicación PlanAhead funcione, necesita ejecutar los siguientes comandos
+sudo sed -i -e 's/#!\/bin\/sh/#!\/bin\/bash/' /opt/Xilinx/14.6/ISE_DS/PlanAhead/bin/planAhead
+sudo sed -i -e 's/#!\/bin\/sh/#!\/bin\/bash/' /opt/Xilinx/14.6/ISE_DS/PlanAhead/bin/loader
+
+10. ¡Ya está! Ahora creamos un ejecutable en la línea de comandos para iniciar ISE (archivo con extensión .sh)...
+sudo kate /opt/Xilinx/14.6/startise.sh
+Pega esto en el archivo:
+
+#!/bin/bash
+source /opt/Xilinx/14.6/ISE_DS/settings64.sh
+/opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/ise
+
+11. Creamos un ICONO lanzador
+NOTA: el comando útil es: "/opt/Xilinx/14.6/startise.sh"
+

@@ -1,0 +1,34 @@
+---Installing Git for Linux
+sudo apt-get install git
+
+---Configuring GitHub
+git config --global user.name "user_name"  // user_name, nombre de usuario en github
+git config --global user.email "email_id"  // email_id, correo de registro en github
+
+---Creating a local repository
+git init file_name // file_name, nombre de la carpeta repositorio
+luego saldrá Initialized empty Git repository in /home/akshay/file_name/.git
+cd file_name // Para entrar en la carpeta
+
+---Creating a README file to describe the repository
+gedit README
+
+---Adding repository files to an index
+git add archivo // agrega "archivo" el archivo al repositorio local
+
+---Committing changes made to the index
+git commit -m "some_message" // Agrega un comentario
+
+---Creating a repository on GitHub
+Se crea un repositorio en github con el mismo nombre del repositorio local creado anteriormente "file_name"
+
+git remote add origin https://github.com/user_name/Mytest.git   // conecta el repositorio de github
+
+---Pushing files in local repository to GitHub repository
+git push origin master   // sube los archivos del repositorio local al repositorio en github
+git fetch [remote-name] // recibe de repositorio
+remote show [nombre] // inspecciona repositorio
+git remote rename pb paul // renombra repositorio de pb a paul
+git remote // muestra los repositorios
+git remote -v // muestra url de repositorios
+git clone URL // clona repositorio

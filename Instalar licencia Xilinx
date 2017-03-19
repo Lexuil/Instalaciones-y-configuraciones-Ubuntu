@@ -1,0 +1,7 @@
+en el terminal, ir a la direccion donde esta la licencia 
+
+sudo cd Xilinx.lic /ubucacion_de_Xilinx/14.7/ISE_DS/ISE/coregen/core_licenses/Xilinx.lic
+ecribir la contraseña y luego escribir
+sudo cd Xilinx.lic /ubucacion_de_Xilinx/14.7/ISE_DS/EDK/data/core_licenses/
+
+listo

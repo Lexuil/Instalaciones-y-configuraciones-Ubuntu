@@ -1,0 +1,142 @@
+install Xilinx USB cable drivers for Ubuntu
+
+Using Xilinx tools, iMPACT, Chipscope, ... on an UBUNTU 12.04LTS machine.
+
+
+Being able to download configuration files in Xilinx FPGAs on Xilinx and othere demo boards and use tools a iMPACT, Chipscope, and etcetera requires he installation of drivers. In the past it often was a burden to get this going, in the latest releases of the software these drivers are delivered with the installation of the software.
+
+I'll provide here the installation procedure on an Ubuntu 12.04LTS equipped machine but this procedure can also be followed for other Linux distributions.
+
+After installing the Xilinx ISE software on your machine, open a terminal window using the following key-combination:
+
+[CTRL] + [ALT] + T
+
+
+The terminal window opens in your home directory. Change directory to where the Xilinx USB drivers can be found.
+
+cd /<Install Path>/Xilinx/<Version Number>/ISE_DS/common/bin/lin64/digilent
+
+
+The given path points to the 64-bit drivers, for the 32-bit versions replace "lin64" by "lin".
+
+for the installation on my machine the path looks as:
+
+/usr/Xilinx/14.4/ISE_DS/common/bin/lin64/digilent
+
+
+Install the USB cable drivers for Xilinx tools
+
+Install the USB cable drivers for Xilinx tools by typing in the terminal:
+
+sudo ./install_digilent.sh
+
+
+Provide your sudo password and the installation will start. Below is an example of the text that will appear in the terminal window while the drivers are installed:
+
+    Digilent Cable Drivers Installer
+    Checking for prerequisite: libusb-1.0
+    libusb-1.0.so.0 is present
+    Installing component: Digilent Adept Runtime
+    Adept Runtime Installer
+    64-bit operating system detected
+    In which directory should libraries be installed? [/usr/local/lib64/digilent/adept] 
+
+It is possible to specify a directory path here for the installation of the drivers, but normally you can just accept the default given path.
+
+   Installing runtime libraries.....
+   Checking to see if libdabs.so is already installed....
+   No existing installation of libdabs.so found.
+   Installed shared library "/usr/local/lib64/digilent/adept/libdabs.so.2.10.1"
+   
+
+The terminal screen will show a whole list of this kind of messages while all .so files are installed or installation is skipped because the libraries are already available.
+
+   Checking to see if libjtsc.so is already installed....
+   No existing installation of libjtsc.so found.
+   Installed shared library "/usr/local/lib64/digilent/adept/libjtsc.so.2.7.2"
+   Created symbolic link "/usr/local/lib64/digilent/adept/libjtsc.so"
+   Created symbolic link "/usr/local/lib64/digilent/adept/libjtsc.so.2"
+   Successfully installed runtime libraries.
+   In which directory should system binaries be installed? [/usr/local/sbin] 
+
+The libraries are installed and the question is asked where to install the binaries of the Xilinx USB cable drivers. Provide a path or accept the default given path by just hitting the enter/return key.
+
+Remark:
+
+The paths shown in the terminal text examples are those where the drivers are installed on my machine, it is possible that the install paths/locations are different for your machine and/or Linux distribution.
+
+   Installing system binaries.....
+   installed "/usr/local/sbin/dftdrvdtch"
+   Successfully installed system binaries in "/usr/local/sbin".
+   In which directory should data files be installed? [/usr/local/share/digilent/data]
+
+The binaries are installed and now the question is asked where to install the data files. Provide a pth or accept the given default by hitting enter/return.
+
+   Installing firmware images.....
+   Successfully installed firmware images in "/usr/local/share/digilent/data/firmware".
+   Installing JTSC device list.....
+   Successfully installed JTSC device list "/usr/local/share/digilent/data/jtscdvclist.txt".
+   Installing CoolRunner support files.....
+   Successfully installed CoolRunner support files in "/usr/local/share/digilent/data/xpla3".
+   Installing CoolRunner 2 support files.....
+   Successfully installed CoolRunner 2 support files in "/usr/local/share/digilent/data/xbr".
+   In which directory should the Adept Runtime Configuration file be installed? [/etc]
+
+Question asked by the installation flow where to install the runtime configuration file. As for may programs the default given path is /etc but hen wanted this can be anywere else by specifying a custom path.
+
+   Installing Adept Runtime configuration.....
+   Successfully installed Adept Runtime configuration "/etc/digilent-adept.conf".
+   Installing USB UDEV rules.....
+   Successfully installed USB UDEV rules "/etc/udev/rules.d/52-digilent-usb.rules".
+   Installing dynamic loader configuration.....
+   Successfully installed dynamic loader configuration "/etc/ld.so.conf.d/digilent-adept-libraries.conf".
+   Successfully reloaded UDEV rules.
+   Successfully updated dynamic loader cache.
+   Successfully installed Adept Runtime.
+   Successfully installed component: Digilent Adept Runtime
+
+Xilinx and Digilent boards use a FTDI USB/RS232 device for communication and downloading of configuration files in the FPGA(s) on teh development / demo boards. The installation program checks if FTDI drivers are already available on the machine and if not installs them. Ubuntu is default equiped with Silabs USB/RS232 drivers, so the FTDI drivers will be installed. It is again possible to specify a location for these drivers. I've let the install tool use the default given location but maybe one wants to install drivers elsewhere, possibly were the Silabs drivers are installed.
+
+   Installing component: FTDI Drivers (libftd2xx)
+   FTDI Driver Installer
+   64-bit operating system detected
+   In which directory should libraries be installed? [/usr/local/lib64] 
+   Checking to see if libftd2xx.so is already installed....
+   No existing installation of libftd2xx.so found.
+   Installed shared library "/usr/local/lib64/libftd2xx.so.1.0.4"
+   Created symbolic link "/usr/local/lib64/libftd2xx.so"
+   Successfully installed dynamic loader configuration "/etc/ld.so.conf.d/ftdi-drivers.conf"
+   Successfully updated dynamic loader cache
+   Successfully installed FTDI Driver
+   Successfully installed component: FTDI Drivers (libftd2xx)
+
+   Installing component: libCseDigilent
+   Installer for Plugins for Xilinx Tools
+   In which directory should plugins be installed? [/home/marc/.cse]
+
+   Plugins will be installed in the following directory: "/home/marc/.cse"
+   Found plugin "libCseDigilent" version "14.1" by "Digilent".
+   Overwrite existing plugin "/home/marc/.cse/lin64/14.1/plugins/Digilent/libCseDigilent"? (y/n) [y] y
+   Successfully installed plugin in "/home/marc/.cse/lin64/14.1/plugins/Digilent/libCseDigilent".
+   Successfully installed 1 plugin(s) for Xilinx Tools.
+   Successfully installed component: libCseDigilent
+
+   Successfully installed Digilent Cable Drivers
+
+Voila, installation done and ready to be tested. Connect a development board via a USB cable to your PC and start a tool like iMPACT or Chipscope.
+
+Example for iMPACT
+
+Start iMPACT via the menu, if you installed the menu system as described in another article on this web page or start iMPACT from the command line.
+
+[CTRL] + [ALT] + T        
+
+Source the right Xilinx settings file:
+
+source /<Install Path>/Xilinx/<Version Number>/ISE_DS/settingsNN.FFF     
+
+Where <Install Path> is the directory path where the Xilinx tools are installed, <Version Number> is the version of the Xilinx ISE software installed on your machine, NN = 32 or 64 bit machine and FFF = csh or sh shell used. Then type:
+
+impact        
+
+The iMPACT GUI will start and when it asks to automatically detect the JTAG chain, respond with yes. WHen the drivers are correctly installed the JTAG chain of components on the used development board will be displayed with icons on the iMPACT canvas. 

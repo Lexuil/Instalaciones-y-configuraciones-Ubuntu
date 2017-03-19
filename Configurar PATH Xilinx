@@ -1,0 +1,8 @@
+En el terminal
+
+echo "PATH=\$PATH:/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64" >> ~/.bashrc  
+echo "export PATH" >> ~/.bashrc  
+
+source ~/.bashrc 
+
+Reemplazando ~/ por /home/usuario.  Ejemplo /home/luis/.bashrc
