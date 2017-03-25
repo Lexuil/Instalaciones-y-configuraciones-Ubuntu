@@ -17,3 +17,10 @@ Set up `matrix` CLI to target this device
 matrix use d6242982e2d3
 or
 matrix use Matrix
+
+
+
+
+
+export MATRIX_DEVICE_ID=d554e352af8c
+export MATRIX_DEVICE_SECRET=8cd3003ee4b679c3b76518f7290fa9f6909232539c5af16cdbe8cdc3e802ac9cc4c67c1cfb35c5df0eab4d5a43
