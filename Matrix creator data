@@ -27,6 +27,7 @@ export MATRIX_DEVICE_SECRET=8cd3003ee4b679c3b76518f7290fa9f6909232539c5af16cdbe8
 
 
 ssh -X pi@192.168.43.211 Raspberry pi ubuntu
+scp myfile.txt pi@192.168.1.3:project/
 
 
 sudo xc3sprog -c matrix_pi (bit_name_in_you_pc).bit -p 1
