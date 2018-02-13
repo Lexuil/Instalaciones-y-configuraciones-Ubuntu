@@ -1,0 +1,29 @@
+--Descargar los siguientes archivos
+
+lm32 limpio: 
+https://mega.nz/#!KZASVB4I!LWUyheZHkH2294z5FdDV6Wn6xaetOFteevtMD9_JtkE
+
+script de instalacion de las dependencias: 
+https://mega.nz/#!qJIXXTTa!4u4ifPFMHpQqulEqbHo1QWj0srWfepUcWgAPrMOmN1g
+
+lm32 toolchain: 
+https://mega.nz/#!vdJmCKhD!b0EejXf9LlssXPynKU8mWqBH4Xypr9S06xTkbqQ4oPE
+
+--Instalar las dependencias
+Dar permiso de ejecucion como programa al scrip lm32reqtc.sh
+Eso se hace en propiedades, permisos y ejecucion
+
+En consola lo ejecutamos ~/.lm32reqtc.sh
+
+--Instalacion del toolchain
+Descomprimimos el archivo toolchain.tar.bz2
+Abrimos una terminal desde la carpeta exraida y ejecutamos sudo make
+
+En caso de error 8:
+En el archivo Makefile, se cambia la linea
+
+RTEMS_SOURCES_URL=ftp://ftp.rtems.org/pub/rtems/SOURCES/$(RTEMS_VERSION) 
+
+por
+
+RTEMS_SOURCES_URL=ftp://ftp.rtems.org/pub/rtems/archive/SOURCES/$(RTEMS_VERSION)
